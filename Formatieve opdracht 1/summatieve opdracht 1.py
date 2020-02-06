@@ -1,3 +1,5 @@
+'''Hulp gekregen van David bij de code op regel 32 en 35'''
+
 grootte = int(input("Hoe groot is de piramide"))
 
 def for_loop(grootte):
