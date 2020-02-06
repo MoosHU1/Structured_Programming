@@ -5,10 +5,17 @@ def gem(lst):
 
     return totaal/len(lst)
 
-def gem_2(lst):
-    print("")
+def gem_multiple(lst):
+    averages = []
+    for sub in lst:
+        averages.append(gem(sub))
 
-input_items = input("Geef je items gescheiden door komma: ")
-lst = input_items.split(",")
+    return averages
 
-print(gem(lst))
+#input_items = input("Geef je items gescheiden door komma: ")
+#lst = input_items.split(",")
+
+# eerste functie is met user input, 2de hardcoded.
+sublists = [[3, 4, 5], [8, 9, 10], [1, 2, 3]]
+
+print(gem_multiple(sublists))
