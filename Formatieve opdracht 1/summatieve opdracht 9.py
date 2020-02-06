@@ -1,9 +1,14 @@
 def move(ch, n):
-    if n>0:
+    new = []
+
+    if n > 0:
+        for index in range(-1, (-len(ch))-1, -1):
+            new.append(ch[index+n])
+    print(new)
 
 
 
-
-
-ch = int(input("Geef een byte: "))
+ch = input("Geef een byte: ")
 n = int(input("Hoeveel moet die verplaatst worden: "))
+
+move(ch, n)

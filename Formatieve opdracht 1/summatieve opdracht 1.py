@@ -26,12 +26,11 @@ def while_loop(grootte):
 
 
 def for_loop_andersom(grootte):
-    def for_loop(grootte):
-        pass
     for x in range(grootte):
         print(('{:>'+str(grootte)+'}').format(x *("*")))
 
     for x in range(grootte, 0, -1):
         print(('{:>'+str(grootte)+'}').format(x *("*")))
+
 
 for_loop_andersom(grootte)
