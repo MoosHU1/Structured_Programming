@@ -1,4 +1,8 @@
-'''Zwart is goed op de goede plek, wit is goed op de verkeerde plek'''
+'''Zwart is goed op de goede plek, wit is goed op de verkeerde plek
+Bron 1: https://stackoverflow.com/questions/4859292/how-to-get-a-random-value-from-dictionary-in-python
+
+
+'''
 import random
 
 colors = {'w': 'Wit',
@@ -9,8 +13,13 @@ colors = {'w': 'Wit',
            'o': 'oranje'
            }
 
+
+def random_color():
+    return random.choice(list(colors.keys()))
+
+
 def player_guess():
-    cpu_colors = random.choice(colors)
+    cpu_colors = [random_color(), random_color(), random_color(), random_color()]
     print(cpu_colors)
 
 
@@ -26,10 +35,9 @@ def player_guess():
 def start():
     a = input("Wil je raden of  kleuren keizen [R/K]: ")
 
-    if a == "R" or "r":
+    if a == "R" or a == "r":
         player_guess()
-    if a == "K" or "k":
-        cpu_guess()
-
+    if a == "K" or a == "k":
+        cpu_guess
 
 start()
