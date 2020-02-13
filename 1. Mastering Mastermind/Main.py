@@ -70,18 +70,29 @@ def player_guess(): # Speler raadt door pc gekozen kleuren
         beurt += 1
 
 
-def create_all_options_list():
+# def create_all_options_list():
+#     all_options = []
+#     for color_1 in colors:  # Stop alle opties in de lijst
+#         for color_2 in colors:
+#             for color_3 in colors:
+#                 for color_4 in colors:
+#                     all_options.append([color_1, color_2, color_3, color_4])
+#     global all_options
+
+
+def algoritme_1(last_guess, black_pin, white_pin):
     all_options = []
     for color_1 in colors:  # Stop alle opties in de lijst
         for color_2 in colors:
             for color_3 in colors:
                 for color_4 in colors:
                     all_options.append([color_1, color_2, color_3, color_4])
-    global all_options
 
+    for item in all_options:
+        if check(item, last_guess) != [black_pin, white_pin]:
+            all_options.remove(item)
 
-def algoritme_1():
-
+    return all_options[1]
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
     player_colors = input_colors()
@@ -91,12 +102,20 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
         if beurt == 12:
             print("Je beurten zijn  op")
 
-        guess = [random_color(), random_color(), random_color(), random_color()]
+        if int(input("Welk algoritme wil je gebruiken? (1, 2, 3)")) == 1: # Algoritme nummer 1
+            if beurt == 1:
+                guess = all_options[1]
+            else:
+                guess = algoritme_1(last_guess, black_pin, white_pin)
+
+        else:
+            guess = [random_color(), random_color(), random_color(), random_color()]
 
         if player_colors == guess:
             print("Ik heb gewonnen!")
             break
 
+        last_guess = guess
         black_pin = (check(guess, player_colors))[0]
         white_pin = (check(guess, player_colors))[0]
         print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
