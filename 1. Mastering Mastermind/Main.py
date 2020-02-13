@@ -82,29 +82,33 @@ def player_guess(): # Speler raadt door pc gekozen kleuren
 
 def algoritme_1(last_guess, black_pin, white_pin):
     all_options = []
-    for color_1 in colors:  # Stop alle opties in de lijst
-        for color_2 in colors:
-            for color_3 in colors:
-                for color_4 in colors:
-                    all_options.append([color_1, color_2, color_3, color_4])
+    if not all_options:
+        for color_1 in colors:  # Stop alle opties in de lijst
+            for color_2 in colors:
+                for color_3 in colors:
+                    for color_4 in colors:
+                        all_options.append([color_1, color_2, color_3, color_4])
 
     for item in all_options:
         if check(item, last_guess) != [black_pin, white_pin]:
             all_options.remove(item)
-
+    print(all_options[1])
     return all_options[1]
+
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
     player_colors = input_colors()
-    beurt = 0
+    beurt = 1
+
+    algoritme_nummer = 1
 
     while True:
-        if beurt == 12:
+        if beurt == 2000:
             print("Je beurten zijn  op")
 
-        if int(input("Welk algoritme wil je gebruiken? (1, 2, 3)")) == 1: # Algoritme nummer 1
+        if algoritme_nummer == 1: # Algoritme nummer 1
             if beurt == 1:
-                guess = all_options[1]
+                guess = ['Wit', "Wit", "Wit", "Wit"]
             else:
                 guess = algoritme_1(last_guess, black_pin, white_pin)
 
@@ -117,9 +121,9 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
 
         last_guess = guess
         black_pin = (check(guess, player_colors))[0]
-        white_pin = (check(guess, player_colors))[0]
+        white_pin = (check(guess, player_colors))[1]
         print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
-
+        beurt += 1
 
 def start():
     a = input("Wil je raden of  kleuren keizen [R/K]: ")
@@ -131,4 +135,4 @@ def start():
 
 
 start()
-create_all_options_list()
+#create_all_options_list()
