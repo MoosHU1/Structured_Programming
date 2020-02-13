@@ -5,6 +5,7 @@ Bron 2: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from
 '''
 import random
 
+
 # colors = {'Wit': 'w',
 #            'Zwart': 'z',
 #            'Blauw': 'b',
@@ -70,30 +71,27 @@ def player_guess(): # Speler raadt door pc gekozen kleuren
         beurt += 1
 
 
-# def create_all_options_list():
-#     all_options = []
-#     for color_1 in colors:  # Stop alle opties in de lijst
-#         for color_2 in colors:
-#             for color_3 in colors:
-#                 for color_4 in colors:
-#                     all_options.append([color_1, color_2, color_3, color_4])
-#     global all_options
+def create_all_options_list():
+    global all_options
+    all_options = []
+    for color_1 in colors:  # Stop alle opties in de lijst
+        for color_2 in colors:
+            for color_3 in colors:
+                for color_4 in colors:
+                    all_options.append([color_1, color_2, color_3, color_4])
 
 
 def algoritme_1(last_guess, black_pin, white_pin):
-    all_options = []
-    if not all_options:
-        for color_1 in colors:  # Stop alle opties in de lijst
-            for color_2 in colors:
-                for color_3 in colors:
-                    for color_4 in colors:
-                        all_options.append([color_1, color_2, color_3, color_4])
-
+    len_before = len(all_options)
     for item in all_options:
-        if check(item, last_guess) != [black_pin, white_pin]:
+        if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
-    print(all_options[1])
-    return all_options[1]
+
+    len_after = len(all_options)
+    if len_before == len_after:
+        return all_options[(all_options.index(last_guess))+1] # Gaat de hele lijst af als de lijst niet meer verandert
+    else:
+        return all_options[0]
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
@@ -103,8 +101,9 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
     algoritme_nummer = 1
 
     while True:
-        if beurt == 2000:
-            print("Je beurten zijn  op")
+        if beurt == 24:
+            print("Jij hebt gewonnen")
+            break
 
         if algoritme_nummer == 1: # Algoritme nummer 1
             if beurt == 1:
@@ -112,18 +111,22 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
             else:
                 guess = algoritme_1(last_guess, black_pin, white_pin)
 
-        else:
+        else: # Random
             guess = [random_color(), random_color(), random_color(), random_color()]
 
+        last_guess = guess
+
         if player_colors == guess:
+            print("Ik gok {}".format(guess))
             print("Ik heb gewonnen!")
             break
 
-        last_guess = guess
         black_pin = (check(guess, player_colors))[0]
         white_pin = (check(guess, player_colors))[1]
-        print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
+        print("Ik gok {}\n{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek\n".format(guess, black_pin, white_pin))
+        input()
         beurt += 1
+
 
 def start():
     a = input("Wil je raden of  kleuren keizen [R/K]: ")
@@ -134,5 +137,6 @@ def start():
         cpu_guess()
 
 
+
+create_all_options_list()
 start()
-#create_all_options_list()
