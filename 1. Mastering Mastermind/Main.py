@@ -15,10 +15,12 @@ import random
 
 colors = ['Wit', 'Zwart', 'Blauw', 'Groen', 'Rood', 'Oranje']
 
-def random_color():
+
+def random_color(): # Kies een willekeurige kleur
     return random.choice(colors)
 
-def input_guess():
+
+def input_colors(): # Gok van speler opvragen of kleuren van speler opvragen
     guess_list = []
     input_user_list = []
 
@@ -31,7 +33,21 @@ def input_guess():
     return input_user_list
 
 
-def player_guess():
+def check(guess, color_code): #Checkt de gok op zwarte en blauwe pinnen
+    black_pin = 0
+    white_pin = 0
+
+    for i in range(0, 3):
+        if guess[i] == color_code[i]:
+            black_pin += 1
+
+        elif guess[i] in color_code:
+            white_pin += 1
+
+    return [black_pin, white_pin]
+
+
+def player_guess(): # Speler raadt door pc gekozen kleuren
     cpu_colors = [random_color(), random_color(), random_color(), random_color()]
     #print(cpu_colors)
 
@@ -42,31 +58,35 @@ def player_guess():
             print("Je beurten zijn op")
             break
 
-        black_pin = 0   # Goed op de goede plek
-        white_pin = 0   # Goed op de verkeerde plek
-        guess = input_guess()
+        guess = input_colors()
         print(guess)
         if guess == cpu_colors:
             print("Je hebt gewonnen!")
             break
 
-        for i in range(0, 3):
-            if guess[i] == cpu_colors[i]:
-                black_pin += 1
-
-            elif guess[i] in cpu_colors:
-                white_pin += 1
-
+        black_pin = (check(guess, cpu_colors))[0]
+        white_pin = (check(guess, cpu_colors))[0]
         print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
         beurt += 1
 
 
-#def cpu_guess():
+def cpu_guess():    # Pc raadt door speler gekozen kleuren
+    player_colors = input_colors()
+    beurt = 0
 
+    while True:
+        if beurt == 12:
+            print("Je beurten zij  op")
 
+        guess = [random_color(), random_color(), random_color(), random_color()]
 
+        if player_colors == guess:
+            print("Je hebt gewonnen!")
+            break
 
-
+        black_pin = (check(guess, player_colors))[0]
+        white_pin = (check(guess, player_colors))[0]
+        print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
 
 
 
@@ -76,6 +96,6 @@ def start():
     if a == "R" or a == "r":
         player_guess()
     if a == "K" or a == "k":
-        cpu_guess
+        cpu_guess()
 
 start()
