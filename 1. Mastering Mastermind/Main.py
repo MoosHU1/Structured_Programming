@@ -123,7 +123,8 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
 
         black_pin = (check(guess, player_colors))[0]
         white_pin = (check(guess, player_colors))[1]
-        print("Ik gok {}\n{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek\n".format(guess, black_pin, white_pin))
+        print("Ik gok {}\n{} Goede kleur en goede plek\n{} "
+              "Goede kleur en verkeerde plek\n".format(guess, black_pin, white_pin))
         input()
         beurt += 1
 
