@@ -38,10 +38,10 @@ def check(guess, color_code): #Checkt de gok op zwarte en blauwe pinnen
     white_pin = 0
 
     for i in range(0, 3):
-        if guess[i] == color_code[i]:
+        if color_code[i] == guess[i]:
             black_pin += 1
 
-        elif guess[i] in color_code:
+        elif color_code[i] in guess:
             white_pin += 1
 
     return [black_pin, white_pin]
@@ -49,7 +49,7 @@ def check(guess, color_code): #Checkt de gok op zwarte en blauwe pinnen
 
 def player_guess(): # Speler raadt door pc gekozen kleuren
     cpu_colors = [random_color(), random_color(), random_color(), random_color()]
-    #print(cpu_colors)
+    print(cpu_colors)
 
     beurt = 0
 
@@ -65,9 +65,18 @@ def player_guess(): # Speler raadt door pc gekozen kleuren
             break
 
         black_pin = (check(guess, cpu_colors))[0]
-        white_pin = (check(guess, cpu_colors))[0]
+        white_pin = (check(guess, cpu_colors))[1]
         print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
         beurt += 1
+
+
+def algoritme_1():
+    all_options = []
+    for color_1 in colors:
+        for color_2 in colors:
+            for color_3 in colors:
+                for color_4 in colors:
+                    all_options.append([color_1, color_2, color_3, color_4])
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
@@ -76,18 +85,17 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
 
     while True:
         if beurt == 12:
-            print("Je beurten zij  op")
+            print("Je beurten zijn  op")
 
         guess = [random_color(), random_color(), random_color(), random_color()]
 
         if player_colors == guess:
-            print("Je hebt gewonnen!")
+            print("Ik heb gewonnen!")
             break
 
         black_pin = (check(guess, player_colors))[0]
         white_pin = (check(guess, player_colors))[0]
         print("{} Goede kleur en goede plek\n{} Goede kleur en verkeerde plek".format(black_pin, white_pin))
-
 
 
 def start():
