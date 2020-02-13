@@ -70,13 +70,17 @@ def player_guess(): # Speler raadt door pc gekozen kleuren
         beurt += 1
 
 
-def algoritme_1():
+def create_all_options_list():
     all_options = []
-    for color_1 in colors:
+    for color_1 in colors:  # Stop alle opties in de lijst
         for color_2 in colors:
             for color_3 in colors:
                 for color_4 in colors:
                     all_options.append([color_1, color_2, color_3, color_4])
+    global all_options
+
+
+def algoritme_1():
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
@@ -106,4 +110,6 @@ def start():
     if a == "K" or a == "k":
         cpu_guess()
 
+
 start()
+create_all_options_list()
