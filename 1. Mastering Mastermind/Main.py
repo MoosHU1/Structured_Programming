@@ -5,7 +5,6 @@ Bron 2: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from
 '''
 import random
 
-
 # colors = {'Wit': 'w',
 #            'Zwart': 'z',
 #            'Blauw': 'b',
@@ -87,11 +86,16 @@ def algoritme_1(last_guess, black_pin, white_pin):
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
 
+
     len_after = len(all_options)
     if len_before == len_after:
         return all_options[(all_options.index(last_guess))+1] # Gaat de hele lijst af als de lijst niet meer verandert
     else:
         return all_options[0]
+
+def algoritme_2(last_guess, black_pin, white_pin):
+    print()
+
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
@@ -107,9 +111,15 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
 
         if algoritme_nummer == 1: # Algoritme nummer 1
             if beurt == 1:
-                guess = ['Wit', "Wit", "Wit", "Wit"]
+                guess = ['Wit', "Wit", "Blauw", "Blauw"]
             else:
                 guess = algoritme_1(last_guess, black_pin, white_pin)
+
+        elif algoritme_nummer == 2: # Algoritme nummer 1
+            if beurt == 1:
+                guess = ["Wit", "Wit", "Blauw", "Blauw"]
+            else:
+                guess = algoritme_2(last_guess, black_pin, white_pin)
 
         else: # Random
             guess = [random_color(), random_color(), random_color(), random_color()]
@@ -125,7 +135,7 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
         white_pin = (check(guess, player_colors))[1]
         print("Ik gok {}\n{} Goede kleur en goede plek\n{} "
               "Goede kleur en verkeerde plek\n".format(guess, black_pin, white_pin))
-        input()
+
         beurt += 1
 
 
