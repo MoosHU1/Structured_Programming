@@ -37,7 +37,7 @@ def check(guess, color_code): #Checkt de gok op zwarte en blauwe pinnen
     black_pin = 0
     white_pin = 0
 
-    for i in range(0, 3):
+    for i in range(0, 4):
         if color_code[i] == guess[i]:
             black_pin += 1
 
