@@ -81,11 +81,12 @@ def create_all_options_list():
 
 
 def algoritme_1(last_guess, black_pin, white_pin):
+
     len_before = len(all_options)
+
     for item in all_options:
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
-
 
     len_after = len(all_options)
     if len_before == len_after:
@@ -93,19 +94,34 @@ def algoritme_1(last_guess, black_pin, white_pin):
     else:
         return all_options[0]
 
-def algoritme_2(last_guess, black_pin, white_pin):
-    print()
 
+def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
+
+    all_options.remove(last_guess)
+    if [black_pin, white_pin] == [0, 0]:
+        for a in range(4):
+            for item in all_options:
+                if last_guess[a] in item:
+                    all_options.remove(item)
+
+    if beurt == 2:
+        return ["Blauw", "Blauw", "Groen", "Groen"]
+
+    elif beurt == 3:
+        return ["Rood", "Rood", "Oranje", "Oranje"]
+
+    else:
+        return(all_options[0])
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
     player_colors = input_colors()
     beurt = 1
 
-    algoritme_nummer = 1
+    algoritme_nummer = 2
 
     while True:
-        if beurt == 24:
+        if beurt == 10000:
             print("Jij hebt gewonnen")
             break
 
@@ -115,11 +131,11 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
             else:
                 guess = algoritme_1(last_guess, black_pin, white_pin)
 
-        elif algoritme_nummer == 2: # Algoritme nummer 1
+        elif algoritme_nummer == 2: # Algoritme nummer 2
             if beurt == 1:
-                guess = ["Wit", "Wit", "Blauw", "Blauw"]
+                guess = ["Wit", "Wit", "Zwart", "Zwart"]
             else:
-                guess = algoritme_2(last_guess, black_pin, white_pin)
+                guess = algoritme_2(last_guess, black_pin, white_pin, beurt)
 
         else: # Random
             guess = [random_color(), random_color(), random_color(), random_color()]
