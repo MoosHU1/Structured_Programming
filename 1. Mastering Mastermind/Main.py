@@ -2,6 +2,12 @@
 Bron 1: https://stackoverflow.com/questions/4859292/how-to-get-a-random-value-from-dictionary-in-python
 Bron 2: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
 
+Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
+Tweede algoritme: Eigen algoritme
+Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.23/Mastermind.html.
+                 Om niet mogelijke combinaties te elimineren heb ik gebruik gemaakt van hetzelfde
+                 principe als bij algoritme 1.
+
 '''
 import random
 
@@ -89,6 +95,7 @@ def algoritme_1(last_guess, black_pin, white_pin):
             all_options.remove(item)
 
     len_after = len(all_options)
+    
     if len_before == len_after:
         return all_options[(all_options.index(last_guess))+1] # Gaat de hele lijst af als de lijst niet meer verandert
     else:
@@ -113,12 +120,36 @@ def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
     else:
         return(all_options[0])
 
+def algoritme_3(last_guess, black_pin, white_pin, beurt): #Statisch algoritme
+
+    for item in all_options:
+        if check(last_guess, item) != [black_pin, white_pin]:
+            all_options.remove(item)
+
+    if beurt == 2:
+        return ["Zwart", "Blauw", "Rood", "Groen"]
+
+    elif beurt == 3:
+        return ["Blauw", "Blauw", "Wit", "Wit"]
+
+    elif beurt == 4:
+        return ["Groen", "Rood", "Zwart", "Groen"]
+
+    elif beurt == 5:
+        return ["Rood", "Oranje", "Rood", "Oranje"]
+
+    elif beurt == 6:
+        return ["Oranje", "Oranje", "Groen", "Blauw"]
+
+    else:
+        return(all_options[0])
+
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
     player_colors = input_colors()
     beurt = 1
 
-    algoritme_nummer = 2
+    algoritme_nummer = 3
 
     while True:
         if beurt == 10000:
@@ -136,6 +167,12 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
                 guess = ["Wit", "Wit", "Zwart", "Zwart"]
             else:
                 guess = algoritme_2(last_guess, black_pin, white_pin, beurt)
+
+        elif algoritme_nummer == 3: # Algoritme nummer 3
+            if beurt == 1:
+                guess = ["Wit", "Zwart", "Zwart", "Wit"]
+            else:
+                guess = algoritme_3(last_guess, black_pin, white_pin, beurt)
 
         else: # Random
             guess = [random_color(), random_color(), random_color(), random_color()]
