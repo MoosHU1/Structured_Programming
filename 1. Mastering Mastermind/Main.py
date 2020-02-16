@@ -33,13 +33,25 @@ def input_colors(): # Gok van speler opvragen of kleuren van speler opvragen
     input_user = input("Geef 4 kleuren op (Wit, Zwart, Blauw, Groen, Rood, Oranje) gescheiden door een komma:")
     list_colors = input_user.split(",")
     for item in list_colors:
-        temp = (item.title()).strip()
+        temp = (item.title()).strip()   # Haalt spaties weg en maakt de eerste letter een hoofdletter
+        if temp[0] == 'w' or temp[0] == 'W':
+            temp = 'Wit'
+        if temp[0] == 'z' or temp[0] == 'Z':
+            temp = 'Zwart'
+        if temp[0] == 'b' or temp[0] == 'B':
+            temp = 'Blauw'
+        if temp[0] == 'g' or temp[0] == 'G':
+            temp = 'Groen'
+        if temp[0] == 'r' or temp[0] == 'R':
+            temp = 'Rood'
+        if temp[0] == 'o' or temp[0] == 'O':
+            temp = 'Oranje'
         input_user_list.append(temp)
 
     return input_user_list
 
 
-def check(guess, color_code): #Checkt de gok op zwarte en blauwe pinnen
+def check(guess, color_code):   # Checkt de gok op zwarte en blauwe pinnen
     black_pin = 0
     white_pin = 0
 
@@ -118,9 +130,10 @@ def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
         return ["Rood", "Rood", "Oranje", "Oranje"]
 
     else:
-        return(all_options[0])
+        return all_options[0]
 
-def algoritme_3(last_guess, black_pin, white_pin, beurt): #Statisch algoritme
+
+def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
 
     for item in all_options:
         if check(last_guess, item) != [black_pin, white_pin]:
@@ -149,12 +162,21 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
     player_colors = input_colors()
     beurt = 1
 
-    algoritme_nummer = 3
-
     while True:
-        if beurt == 10000:
+        try:
+            algoritme_nummer = int(input("Welk algoritme wil je dat ik gebruik?(1,2,3):"))
+        except:
+            print("Dat is geen getal, probeer opnieuw")
+        else:
+            if algoritme_nummer > 3 or algoritme_nummer < 1:
+                print("Ongeldig getal, probeer opnieuw")
+            else:
+                break
+    while True:
+        if beurt == 12:
             print("Jij hebt gewonnen")
-            break
+            print("\n")
+            start()
 
         if algoritme_nummer == 1: # Algoritme nummer 1
             if beurt == 1:
@@ -182,7 +204,8 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
         if player_colors == guess:
             print("Ik gok {}".format(guess))
             print("Ik heb gewonnen!")
-            break
+            print("\n")
+            start()
 
         black_pin = (check(guess, player_colors))[0]
         white_pin = (check(guess, player_colors))[1]
@@ -193,14 +216,26 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
 
 
 def start():
-    a = input("Wil je raden of  kleuren keizen [R/K]: ")
+    while True:
+        try:
+            a = input("Wil je codemaker of codebreaker spelen [M/B]?: ")
+        except:
+            print("Ongeldige invoer, probeer opnieuw\n")
+        else:
+            if a == "M" or a == "m":
+                cpu_guess()
+            elif a == "B" or a == "b":
+                player_guess()
+            else:
+                print("Ongeldige invoer, probeer opnieuw\n")
 
-    if a == "R" or a == "r":
-        player_guess()
-    if a == "K" or a == "k":
-        cpu_guess()
-
-
+def explanation():
+    print("Welkom bij deze mastermind applicatie")
+    print("Je kan straks de optie kiezen om codebreaker of codemaker te spelen.")
+    print("Als codebreaker probeer je de kleurencombinatie van de computer te raden.")
+    print("Als codemaker kies je een kleurencombinatie die de computer gaat raden dmv een algoritme.")
+    print("Bij het invoeren van kleuren kan je ook alleen de eerst letter invoeren. Bv. 'w' i.p.v. 'wit'\n\n")
+    start()
 
 create_all_options_list()
-start()
+explanation()
