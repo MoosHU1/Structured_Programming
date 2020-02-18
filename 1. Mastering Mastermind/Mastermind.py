@@ -156,20 +156,10 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
         return all_options[0]
 
 
-def cpu_guess():    # Pc raadt door speler gekozen kleuren
+def cpu_guess(algoritme_nummer):    # Pc raadt door speler gekozen kleuren
     player_colors = input_colors()
     beurt = 1
 
-    while True:
-        try:
-            algoritme_nummer = int(input("Welk algoritme wil je dat ik gebruik?(1,2,3):"))
-        except:
-            print("Dat is geen getal, probeer opnieuw")
-        else:
-            if algoritme_nummer > 3 or algoritme_nummer < 1:
-                print("Ongeldig getal, probeer opnieuw")
-            else:
-                break
     while True:
         if beurt == 12:
             print("Jij hebt gewonnen")
@@ -223,7 +213,17 @@ def start():
             print("Ongeldige invoer, probeer opnieuw\n")
         else:
             if a == "M" or a == "m":
-                cpu_guess()
+                while True:
+                    try:
+                        algoritme_nummer = int(input("Welk algoritme wil je dat ik gebruik?(1,2,3):"))
+                    except:
+                        print("Dat is geen getal, probeer opnieuw")
+                    else:
+                        if algoritme_nummer > 3 or algoritme_nummer < 1:
+                            print("Ongeldig getal, probeer opnieuw")
+                        else:
+                            break
+                cpu_guess(algoritme_nummer)
             elif a == "B" or a == "b":
                 player_guess()
             else:
