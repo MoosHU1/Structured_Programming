@@ -203,7 +203,7 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
 
         if player_colors == guess:
             print("Ik gok {}".format(guess))
-            print("Ik heb gewonnen!")
+            print("Ik heb gewonnen! In {} beurten".format(beurt))
             print("\n")
             start()
 
