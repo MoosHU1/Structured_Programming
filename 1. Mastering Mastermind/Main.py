@@ -1,6 +1,5 @@
 '''
-Bron 1: https://stackoverflow.com/questions/4859292/how-to-get-a-random-value-from-dictionary-in-python
-Bron 2: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
+Bron 1: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
 
 Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
 Tweede algoritme: Eigen algoritme
