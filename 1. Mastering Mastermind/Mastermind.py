@@ -172,7 +172,7 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
             else:
                 break
     while True:
-        if beurt == 10000:
+        if beurt == 12:
             print("Jij hebt gewonnen")
             print("\n")
             start()
