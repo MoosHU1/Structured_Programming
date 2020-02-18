@@ -8,7 +8,6 @@ Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.
                  een oplossing in 7 beurten. Ik kon ook geen pseudocode of andere code vinden die
                  dit algoritme gebruikt, dus ik heb wat dingen bijgevoegd, maar hij lost hem nogsteeds
                  niet in 7 beurten op.
-
 '''
 import random
 
@@ -237,7 +236,6 @@ def explanation():
     print("Als codemaker kies je een kleurencombinatie die de computer gaat raden dmv een algoritme.")
     print("Bij het invoeren van kleuren kan je ook alleen de eerst letter invoeren. Bv. 'w' i.p.v. 'wit'\n\n")
     start()
-
 
 
 explanation()
