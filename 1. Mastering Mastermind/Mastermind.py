@@ -9,7 +9,6 @@ Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.
                  dit algoritme gebruikt, dus ik heb zelf wat dingen bijgevoegd.
 '''
 import random
-from collections import Counter
 
 colors = ['Wit', 'Zwart', 'Blauw', 'Groen', 'Rood', 'Oranje']
 
