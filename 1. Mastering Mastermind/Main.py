@@ -101,7 +101,7 @@ def algoritme_1(last_guess, black_pin, white_pin):
 
     len_before = len(all_options)
 
-    for item in all_options:
+    for item in all_options:    # Verwijdert alle opties die niet mogelijk zijn
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
 
@@ -134,7 +134,7 @@ def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
 
 def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
 
-    for item in all_options:
+    for item in all_options:    # Verwijdert alle opties die niet mogelijk zijn
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
 
@@ -154,7 +154,7 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
         return ["Oranje", "Oranje", "Groen", "Blauw"]
 
     else:
-        return(all_options[0])
+        return all_options[0]
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
