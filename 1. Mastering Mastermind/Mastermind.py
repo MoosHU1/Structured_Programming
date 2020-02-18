@@ -1,15 +1,16 @@
 ''''
 Bron 1: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
+Bron 2: https://stackoverflow.com/questions/11236006/identify-duplicate-values-in-a-list-in-python
 
 Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
 Tweede algoritme: Eigen algoritme
 Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.23/Mastermind.html.
                  Het verwijderen van niet mogelijke opties zoals bij algoritme 1 geeft niet altijd
                  een oplossing in 7 beurten. Ik kon ook geen pseudocode of andere code vinden die
-                 dit algoritme gebruikt, dus ik heb wat dingen bijgevoegd, maar hij lost hem nogsteeds
-                 niet in 7 beurten op.
+                 dit algoritme gebruikt, dus ik heb zelf wat dingen bijgevoegd.
 '''
 import random
+from collections import Counter
 
 colors = ['Wit', 'Zwart', 'Blauw', 'Groen', 'Rood', 'Oranje']
 
@@ -59,7 +60,6 @@ def check(guess, color_code):   # Checkt de gok op zwarte en blauwe pinnen
 
 def player_guess(): # Speler raadt door pc gekozen kleuren
     cpu_colors = [random_color(), random_color(), random_color(), random_color()]
-    print(cpu_colors)
 
     beurt = 0
 
@@ -101,7 +101,7 @@ def algoritme_1(last_guess, black_pin, white_pin):
         return all_options[0]
 
 
-def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
+def algoritme_2(last_guess, black_pin, white_pin, beurt):   # Eigen algoritme
     all_options.remove(last_guess)
     if [black_pin, white_pin] == [0, 0]:
         for a in range(4):
@@ -192,7 +192,7 @@ def cpu_guess(algoritme_nummer):    # Pc raadt door speler gekozen kleuren
         white_pin = (check(guess, player_colors))[1]
         print("Ik gok {}\n{} Goede kleur en goede plek\n{} "
               "Goede kleur en verkeerde plek\n".format(guess, black_pin, white_pin))
-        #input()
+        input()
 
         beurt += 1
 
@@ -227,7 +227,8 @@ def explanation():
     print("Je kan straks de optie kiezen om codebreaker of codemaker te spelen.")
     print("Als codebreaker probeer je de kleurencombinatie van de computer te raden.")
     print("Als codemaker kies je een kleurencombinatie die de computer gaat raden dmv een algoritme.")
-    print("Bij het invoeren van kleuren kan je ook alleen de eerst letter invoeren. Bv. 'w' i.p.v. 'wit'\n\n")
+    print("Bij het invoeren van kleuren kan je ook alleen de eerst letter invoeren. Bv. 'w' i.p.v. 'wit'.")
+    print("Druk bij elke gok van de computer op enter om naar de volgende gok te gaan.\n\n")
     start()
 
 
