@@ -1,5 +1,6 @@
 ''''
 Bron 1: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
+
 Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
 Tweede algoritme: Eigen algoritme
 Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.23/Mastermind.html.
@@ -90,23 +91,17 @@ def create_all_options_list():
 
 
 def algoritme_1(last_guess, black_pin, white_pin):
-
-    len_before = len(all_options)
+    all_options.remove(last_guess)
 
     for item in all_options:    # Verwijdert alle opties die niet mogelijk zijn
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
 
-    len_after = len(all_options)
-
-    if len_before == len_after:
-        return all_options[(all_options.index(last_guess))+1] # Gaat de hele lijst af als de lijst niet meer verandert
     else:
         return all_options[0]
 
 
 def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
-
     all_options.remove(last_guess)
     if [black_pin, white_pin] == [0, 0]:
         for a in range(4):
