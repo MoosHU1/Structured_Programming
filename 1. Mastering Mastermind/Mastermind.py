@@ -4,8 +4,10 @@ Bron 1: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from
 Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
 Tweede algoritme: Eigen algoritme
 Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.23/Mastermind.html.
-                 Om niet mogelijke combinaties te elimineren heb ik gebruik gemaakt van hetzelfde
-                 principe als bij algoritme 1.
+                 Het verwijderen van niet mogelijke opties zoals bij algoritme 1 geeft niet altijd
+                 een oplossing in 7 beurten. Ik kon ook geen pseudocode of andere code vinden die
+                 dit algoritme gebruikt, dus ik heb wat dingen bijgevoegd, maar hij lost hem nogsteeds
+                 niet in 7 beurten op.
 
 '''
 import random
@@ -130,11 +132,10 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
             all_options.remove(item)
 
     if white_pin == 4:
-        for item in all_options:
-            for color in last_guess:
+        for color in last_guess:
+            for item in all_options:
                 if color not in item:
                     all_options.remove(item)
-
 
     print(len(all_options))
     if beurt == 2:
@@ -153,7 +154,7 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
         return ["Oranje", "Oranje", "Groen", "Blauw"]
 
     else:
-        return random.choice(all_options)
+        return all_options[0]
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
