@@ -125,11 +125,18 @@ def algoritme_2(last_guess, black_pin, white_pin, beurt): # Eigen algoritme
 
 
 def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
-
     for item in all_options:    # Verwijdert alle opties die niet mogelijk zijn
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
 
+    if white_pin == 4:
+        for item in all_options:
+            for color in last_guess:
+                if color not in item:
+                    all_options.remove(item)
+
+
+    print(len(all_options))
     if beurt == 2:
         return ["Zwart", "Blauw", "Rood", "Groen"]
 
@@ -146,7 +153,7 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
         return ["Oranje", "Oranje", "Groen", "Blauw"]
 
     else:
-        return all_options[0]
+        return random.choice(all_options)
 
 
 def cpu_guess():    # Pc raadt door speler gekozen kleuren
@@ -164,7 +171,7 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
             else:
                 break
     while True:
-        if beurt == 12:
+        if beurt == 10000:
             print("Jij hebt gewonnen")
             print("\n")
             start()
@@ -202,12 +209,13 @@ def cpu_guess():    # Pc raadt door speler gekozen kleuren
         white_pin = (check(guess, player_colors))[1]
         print("Ik gok {}\n{} Goede kleur en goede plek\n{} "
               "Goede kleur en verkeerde plek\n".format(guess, black_pin, white_pin))
-        input()
+        #input()
 
         beurt += 1
 
 
 def start():
+    create_all_options_list()
     while True:
         try:
             a = input("Wil je codemaker of codebreaker spelen [M/B]?: ")
@@ -230,5 +238,5 @@ def explanation():
     start()
 
 
-create_all_options_list()
+
 explanation()
