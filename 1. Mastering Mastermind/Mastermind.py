@@ -1,6 +1,5 @@
-'''
+''''
 Bron 1: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
-
 Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
 Tweede algoritme: Eigen algoritme
 Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.23/Mastermind.html.
@@ -10,7 +9,6 @@ Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.
                  niet in 7 beurten op.
 '''
 import random
-from . import algoritmes as algo
 
 colors = ['Wit', 'Zwart', 'Blauw', 'Groen', 'Rood', 'Oranje']
 
@@ -100,9 +98,9 @@ def algoritme_1(last_guess, black_pin, white_pin):
             all_options.remove(item)
 
     len_after = len(all_options)
-    
+
     if len_before == len_after:
-        return all_options[(all_options.index(last_guess))+1]   # Gaat de hele lijst af als de lijst niet meer verandert
+        return all_options[(all_options.index(last_guess))+1] # Gaat de hele lijst af als de lijst niet meer verandert
     else:
         return all_options[0]
 
@@ -137,7 +135,6 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
                 if color not in item:
                     all_options.remove(item)
 
-    print(len(all_options))
     if beurt == 2:
         return ["Zwart", "Blauw", "Rood", "Groen"]
 
@@ -171,19 +168,19 @@ def cpu_guess(algoritme_nummer):    # Pc raadt door speler gekozen kleuren
             if beurt == 1:
                 guess = ['Wit', "Wit", "Blauw", "Blauw"]
             else:
-                guess = algo.algoritme_2(last_guess, black_pin, white_pin)
+                guess = algoritme_1(last_guess, black_pin, white_pin)
 
         elif algoritme_nummer == 2: # Algoritme nummer 2
             if beurt == 1:
                 guess = ["Wit", "Wit", "Zwart", "Zwart"]
             else:
-                guess = algo.algoritme_1(last_guess, black_pin, white_pin)
+                guess = algoritme_2(last_guess, black_pin, white_pin, beurt)
 
         elif algoritme_nummer == 3: # Algoritme nummer 3
             if beurt == 1:
                 guess = ["Wit", "Zwart", "Zwart", "Wit"]
             else:
-                guess = algo.algoritme_3(last_guess, black_pin, white_pin, beurt)
+                guess = algoritme_3(last_guess, black_pin, white_pin, beurt)
 
         else: # Random
             guess = [random_color(), random_color(), random_color(), random_color()]
@@ -240,3 +237,4 @@ def explanation():
 
 
 explanation()
+
