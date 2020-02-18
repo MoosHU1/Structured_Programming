@@ -10,14 +10,6 @@ Derde algoritme: Statisch algoritme, één na laatste alinea http://140.177.205.
 '''
 import random
 
-# colors = {'Wit': 'w',
-#            'Zwart': 'z',
-#            'Blauw': 'b',
-#            'Groen': 'g',
-#            'Rood': 'r',
-#            'Oranje': 'o'
-#            }
-
 colors = ['Wit', 'Zwart', 'Blauw', 'Groen', 'Rood', 'Oranje']
 
 
@@ -236,6 +228,7 @@ def explanation():
     print("Als codemaker kies je een kleurencombinatie die de computer gaat raden dmv een algoritme.")
     print("Bij het invoeren van kleuren kan je ook alleen de eerst letter invoeren. Bv. 'w' i.p.v. 'wit'\n\n")
     start()
+
 
 create_all_options_list()
 explanation()
