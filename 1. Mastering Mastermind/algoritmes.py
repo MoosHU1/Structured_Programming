@@ -65,6 +65,13 @@ def algoritme_3(last_guess, black_pin, white_pin, beurt):   # Statisch algoritme
                 if color not in item:
                     all_options.remove(item)
 
+    elif beurt-1 == 1 or beurt-1 == 3 or beurt-1 == 5:    # Alle beurten met maar 2 verschillende kleuren
+        if white_pin == 3 or white_pin == 4:
+            for color in last_guess:
+                for item in all_options:
+                    if color not in item:
+                        all_options.remove(item)
+
     if beurt == 2:
         return ["Zwart", "Blauw", "Rood", "Groen"]
 
