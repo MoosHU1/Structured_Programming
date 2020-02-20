@@ -1,5 +1,6 @@
 ''''
 Bron 1: https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index
+Bron 2: https://stackoverflow.com/questions/8744113/python-list-by-value-not-by-reference
 
 Eerste algoritme: 2.1 A simple strategy http://www.philos.rug.nl/~barteld/master.pdf
 Tweede algoritme: Eigen algoritme
@@ -45,7 +46,7 @@ def input_colors(): # Gok van speler opvragen of kleuren van speler opvragen
 
 def player_guess(): # Speler raadt door pc gekozen kleuren
     cpu_colors = [random_color(), random_color(), random_color(), random_color()]
-
+    print(cpu_colors)
     beurt = 0
 
     while True:

@@ -1,15 +1,20 @@
 colors = ['Wit', 'Zwart', 'Blauw', 'Groen', 'Rood', 'Oranje']
 
 
-def check(guess, color_code):   # Checkt de gok op zwarte en blauwe pinnen
+def check(_guess, color_code):   # Checkt de gok op zwarte en blauwe pinnen
     black_pin = 0
     white_pin = 0
 
+    guess = [*_guess]
     for i in range(0, 4):
         if color_code[i] == guess[i]:
+
+            guess[i] = ''
             black_pin += 1
 
-        elif color_code[i] in guess:
+    for i in range(0, 4):
+        if color_code[i] in guess:
+
             white_pin += 1
 
     return [black_pin, white_pin]
@@ -26,14 +31,14 @@ def create_all_options_list():
 
 
 def algoritme_1(last_guess, black_pin, white_pin):
+
     all_options.remove(last_guess)
 
     for item in all_options:    # Verwijdert alle opties die niet mogelijk zijn
         if check(last_guess, item) != [black_pin, white_pin]:
             all_options.remove(item)
 
-    else:
-        return all_options[0]
+    return all_options[0]
 
 
 def algoritme_2(last_guess, black_pin, white_pin, beurt):   # Eigen algoritme
